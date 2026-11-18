@@ -1,2 +1,3 @@
 Nama: Febrianti Arini
-NIM
+Peran: System Analyst & Quality Assurance
+Kegiatan Minggu Lalu: Membuat repositori GitHub untuk tim, mengatur collaborators, dan menyusun kerangka awal database MySQL.
