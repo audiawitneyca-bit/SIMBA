@@ -1,3 +1,4 @@
 Nama: Audia Witney Crysteni Amianni
 Peran: Project Manager & Backend Developer
 Kegiatan Minggu Lalu: Membuat repositori GitHub untuk tim, mengatur collaborators, dan menyusun kerangka awal database MySQL.
+halo rek
