@@ -1,2 +1,2 @@
 # SIMBA
-Berdoa dan  bekerja sama :)
+🌱 Menabur dengan doa, bekerja dengan sukacita, menanti tuaian berkat dari-Nya.
