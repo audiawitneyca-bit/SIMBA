@@ -1,3 +1,14 @@
+<?php
+require_once 'config/koneksi.php';
+$query_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasiswa ASC");
+$daftar_beasiswa = [];
+if ($query_beasiswa) {
+    while ($row = mysqli_fetch_assoc($query_beasiswa)) {
+        $daftar_beasiswa[] = $row;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -152,61 +163,48 @@
             </div>
 
             <!-- Kartu Pilihan Beasiswa (Highlight Card Tengah ala Referensi) -->
+            <!-- Kartu Pilihan Beasiswa (Dinamis dari Database Admin, Tanpa Kuota) -->
             <div class="program-cards-grid">
-                <!-- Kartu 1: Beasiswa Prestasi -->
-                <div class="program-card reveal">
-                    <div class="card-icon purple-soft">
-                        <i class="ri-medal-fill"></i>
-                    </div>
-                    <span class="card-badge">Jalur Unggulan</span>
-                    <h3>Beasiswa Prestasi</h3>
-                    <p>
-                        Ditujukan bagi mahasiswa dengan rekam jejak akademik gemilang (IPK tinggi) maupun juara kompetisi tingkat regional, nasional, dan internasional di bidang sains, seni, maupun olahraga.
-                    </p>
-                    <ul class="card-criteria">
-                        <li><i class="ri-checkbox-circle-fill"></i> Minimal IPK 3.50 / Sertifikat Juara</li>
-                        <li><i class="ri-checkbox-circle-fill"></i> Bebas UKT hingga 100%</li>
-                        <li><i class="ri-checkbox-circle-fill"></i> Tunjangan buku & riset</li>
-                    </ul>
-                    <a href="pages/register.php" class="btn btn-outline-purple w-100">Daftar Jalur Ini</a>
-                </div>
+                <?php if (count($daftar_beasiswa) > 0): ?>
+                    <?php
+                    $icons  = ['ri-medal-fill', 'ri-hand-heart-fill', 'ri-lightbulb-flash-fill', 'ri-award-fill'];
+                    $badges = ['Jalur Unggulan', 'Jalur Afirmasi', 'Jalur Kreatif', 'Program Aktif'];
+                    foreach ($daftar_beasiswa as $index => $b):
+                        $is_featured = (!empty($b['is_unggulan']) && $b['is_unggulan'] == 1);
+                        $icon_class  = $icons[$index % count($icons)];
+                        $badge_text  = $badges[$index % count($badges)];
+                    ?>
+                        <div class="program-card <?= $is_featured ? 'featured-card' : '' ?> reveal">
+                            <?php if ($is_featured): ?>
+                                <div class="popular-ribbon">Paling Banyak Diminati</div>
+                            <?php endif; ?>
 
-                <!-- Kartu 2: Beasiswa KIP / Tidak Mampu (Kartu Utama Gradient Ungu-Oranye) -->
-                <div class="program-card featured-card reveal">
-                    <div class="popular-ribbon">Paling Banyak Diminati</div>
-                    <div class="card-icon white-glass">
-                        <i class="ri-hand-heart-fill"></i>
-                    </div>
-                    <span class="card-badge badge-orange">Jalur Afirmasi</span>
-                    <h3>Beasiswa Peduli Pendidikan (Tidak Mampu)</h3>
-                    <p>
-                        Program bantuan biaya pendidikan penuh bagi pelajar berpotensi tinggi yang memiliki keterbatasan ekonomi keluarga, agar tetap dapat menempuh pendidikan tinggi tanpa kendala finansial.
-                    </p>
-                    <ul class="card-criteria">
-                        <li><i class="ri-checkbox-circle-fill"></i> Pemegang KIP / SKTM resmi</li>
-                        <li><i class="ri-checkbox-circle-fill"></i> Biaya kuliah 100% + uang saku bulanan</li>
-                        <li><i class="ri-checkbox-circle-fill"></i> Pendampingan karier eksklusif</li>
-                    </ul>
-                    <a href="pages/register.php" class="btn btn-orange w-100">Daftar Jalur Ini</a>
-                </div>
+                            <div class="card-icon <?= $is_featured ? 'white-glass' : ($index % 2 === 0 ? 'purple-soft' : 'orange-soft') ?>">
+                                <i class="<?= $icon_class ?>"></i>
+                            </div>
+                            <span class="card-badge <?= $is_featured ? 'badge-orange' : '' ?>"><?= $badge_text ?></span>
+                            <h3><?= htmlspecialchars($b['nama_beasiswa']) ?></h3>
+                            <p><?= htmlspecialchars($b['deskripsi']) ?></p>
 
-                <!-- Kartu 3: Beasiswa Inovasi & Kepemimpinan (Jenis Bebas) -->
-                <div class="program-card reveal">
-                    <div class="card-icon orange-soft">
-                        <i class="ri-lightbulb-flash-fill"></i>
+                            <ul class="card-criteria">
+                                <li><i class="ri-calendar-event-fill"></i> Batas Daftar: <?= !empty($b['deadline']) ? date('d M Y', strtotime($b['deadline'])) : 'Segera Dibuka' ?></li>
+                                <li><i class="ri-shield-check-fill"></i> Seleksi Transparan & Paperless</li>
+                            </ul>
+                            <a href="pages/register.php" class="btn <?= $is_featured ? 'btn-orange' : 'btn-outline-purple' ?> w-100">Daftar Jalur Ini</a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="program-card reveal">
+                        <div class="card-icon purple-soft"><i class="ri-medal-fill"></i></div>
+                        <span class="card-badge">Info Program</span>
+                        <h3>Program Beasiswa Segera Dibuka</h3>
+                        <p>Pantau terus portal SIMBA untuk informasi pembukaan periode pendaftaran beasiswa terbaru.</p>
+                        <ul class="card-criteria">
+                            <li><i class="ri-calendar-event-fill"></i> Batas Daftar: Segera Hadir</li>
+                        </ul>
+                        <a href="pages/register.php" class="btn btn-outline-purple w-100">Buat Akun Dulu</a>
                     </div>
-                    <span class="card-badge">Jalur Kreatif</span>
-                    <h3>Beasiswa Talenta Digital & Kepemimpinan</h3>
-                    <p>
-                        Dikhususkan bagi aktivis organisasi kemahasiswaan, penggerak komunitas sosial, serta kreator inovasi teknologi yang membawa dampak positif bagi masyarakat sekitar.
-                    </p>
-                    <ul class="card-criteria">
-                        <li><i class="ri-checkbox-circle-fill"></i> Portofolio proyek / rekam jejak organisasi</li>
-                        <li><i class="ri-checkbox-circle-fill"></i> Subsidi UKT 75% + dana inkubasi</li>
-                        <li><i class="ri-checkbox-circle-fill"></i> Mentoring bersama praktisi industri</li>
-                    </ul>
-                    <a href="pages/register.php" class="btn btn-outline-purple w-100">Daftar Jalur Ini</a>
-                </div>
+                <?php endif; ?>
             </div>
 
             <!-- Interactive Tab Detail Persyaratan -->

@@ -39,4 +39,15 @@ if (isset($_GET['hapus'])) {
     }
     exit;
 }
+
+// 3. Proses Set Beasiswa Unggulan ("Paling Banyak Diminati" di Landing Page)
+if (isset($_GET['unggulan'])) {
+    $id = (int) $_GET['unggulan'];
+    mysqli_query($conn, "UPDATE beasiswa SET is_unggulan = 0");
+    $stmt = mysqli_prepare($conn, "UPDATE beasiswa SET is_unggulan = 1 WHERE id_beasiswa = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    header("Location: ../pages/kelola_beasiswa.php?success=Program unggulan landing page berhasil diperbarui");
+    exit;
+}
 ?>

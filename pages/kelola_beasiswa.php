@@ -164,19 +164,34 @@ $data_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasisw
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1; while ($row = mysqli_fetch_assoc($data_beasiswa)): ?>
+                                    <?php $no = 1; while ($row = mysqli_fetch_assoc($data_beasiswa)): 
+                                        $is_top = !empty($row['is_unggulan']) && $row['is_unggulan'] == 1;
+                                    ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><strong><?= htmlspecialchars($row['nama_beasiswa']) ?></strong></td>
-                                        <td style="max-width: 340px; color: var(--text-muted);"><?= htmlspecialchars($row['deskripsi']) ?></td>
+                                        <td>
+                                            <strong><?= htmlspecialchars($row['nama_beasiswa']) ?></strong>
+                                            <?php if ($is_top): ?>
+                                                <br><span class="deadline-pill" style="margin-top:4px;"><i class="ri-fire-fill"></i> Paling Banyak Diminati</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td style="max-width: 320px; color: var(--text-muted);"><?= htmlspecialchars($row['deskripsi']) ?></td>
                                         <td><span class="kuota-pill"><?= $row['kuota'] ?> Orang</span></td>
                                         <td><span class="deadline-pill"><?= htmlspecialchars($row['deadline']) ?></span></td>
                                         <td>
-                                            <a href="../admin/proses_beasiswa.php?hapus=<?= $row['id_beasiswa'] ?>"
-                                               onclick="return confirm('Yakin ingin menghapus program beasiswa ini?')"
-                                               class="status-badge badge-rejected" style="text-decoration: none;">
-                                                <i class="ri-delete-bin-6-line"></i> Hapus
-                                            </a>
+                                            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                                                <?php if (!$is_top): ?>
+                                                    <a href="../admin/proses_beasiswa.php?unggulan=<?= $row['id_beasiswa'] ?>"
+                                                       class="status-badge badge-pending" style="text-decoration: none;" title="Tampilkan sebagai Paling Banyak Diminati di Landing Page">
+                                                        <i class="ri-star-line"></i> Set Unggulan
+                                                    </a>
+                                                <?php endif; ?>
+                                                <a href="../admin/proses_beasiswa.php?hapus=<?= $row['id_beasiswa'] ?>"
+                                                   onclick="return confirm('Yakin ingin menghapus program beasiswa ini?')"
+                                                   class="status-badge badge-rejected" style="text-decoration: none;">
+                                                    <i class="ri-delete-bin-6-line"></i> Hapus
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                     <?php endwhile; ?>
