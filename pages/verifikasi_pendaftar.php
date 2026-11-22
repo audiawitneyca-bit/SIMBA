@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
 }
 
 $pendaftar = mysqli_query($conn, "
-    SELECT p.id_pendaftaran, u.nama_lengkap, u.email, b.nama_beasiswa, p.ipk, p.status
+    SELECT p.*, u.nama_lengkap, u.email, b.nama_beasiswa
     FROM pendaftaran p
     JOIN users u ON p.id_user = u.id_user
     JOIN beasiswa b ON p.id_beasiswa = b.id_beasiswa
@@ -79,7 +79,7 @@ $pendaftar = mysqli_query($conn, "
                 <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="ri-menu-2-line"></i></button>
                 <div>
                     <h1>Verifikasi Pendaftaran Mahasiswa</h1>
-                    <p>Tinjau kelayakan IPK dan tetapkan hasil seleksi pendaftar beasiswa.</p>
+                    <p>Tinjau kelayakan berkas dan tetapkan hasil seleksi pendaftar beasiswa.</p>
                 </div>
             </div>
             <div class="topbar-right">
@@ -110,7 +110,7 @@ $pendaftar = mysqli_query($conn, "
                 </div>
 
                 <div class="table-card">
-                    <?php if (mysqli_num_rows($pendaftar) > 0): ?>
+                    <?php if ($pendaftar && mysqli_num_rows($pendaftar) > 0): ?>
                         <div class="table-responsive">
                             <table class="modern-table" id="pendaftarTable">
                                 <thead>
@@ -125,7 +125,7 @@ $pendaftar = mysqli_query($conn, "
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; while ($row = mysqli_fetch_assoc($pendaftar)): 
-                                        $st = strtolower($row['status']);
+                                        $st = strtolower($row['status'] ?? 'menunggu');
                                         $badge_class = 'badge-pending';
                                         $badge_icon  = 'ri-time-line';
                                         if (str_contains($st, 'terima') || str_contains($st, 'lolos')) {
@@ -143,11 +143,17 @@ $pendaftar = mysqli_query($conn, "
                                             <span style="font-size: 0.82rem; color: var(--text-muted);"><?= htmlspecialchars($row['email']) ?></span>
                                         </td>
                                         <td><?= htmlspecialchars($row['nama_beasiswa']) ?></td>
-                                        <td><span class="ipk-tag"><?= number_format((float)$row['ipk'], 2) ?></span></td>
+                                        <td>
+                                            <?php if (isset($row['ipk']) && $row['ipk'] !== null && $row['ipk'] !== ''): ?>
+                                                <span class="ipk-tag"><?= number_format((float)$row['ipk'], 2) ?></span>
+                                            <?php else: ?>
+                                                <span class="ipk-tag">-</span>
+                                            <?php endif; ?>
+                                        </td>
                                         <td>
                                             <span class="status-badge <?= $badge_class ?>">
                                                 <i class="<?= $badge_icon ?>"></i>
-                                                <?= htmlspecialchars(ucfirst($row['status'])) ?>
+                                                <?= htmlspecialchars(ucfirst($row['status'] ?? 'Menunggu')) ?>
                                             </span>
                                         </td>
                                         <td>
@@ -202,7 +208,6 @@ $pendaftar = mysqli_query($conn, "
             mobileMenuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
         }
 
-        // Pencarian Instan Pendaftar
         const searchInput = document.getElementById('searchPendaftar');
         const rows = document.querySelectorAll('.pendaftar-row');
         if (searchInput) {

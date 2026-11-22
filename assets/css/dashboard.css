@@ -300,7 +300,14 @@
     margin-bottom: 24px;
 }
 
-/* Summary Grid 2 Kolom */
+/* Summary Grid 3 Kolom (Admin) & 2 Kolom (Peserta) */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 34px;
+}
+
 .summary-grid-two {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
