@@ -18,8 +18,8 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
 
     <h3>Menu Pengelolaan:</h3>
     <ul>
-        <li><a href="#">Kelola Data Beasiswa</a> (Belum dibuat)</li>
-        <li><a href="#">Verifikasi Pendaftaran Mahasiswa</a> (Belum dibuat)</li>
+        <li><a href="kelola_beasiswa.php">Kelola Data Beasiswa</a></li>
+        <li><a href="verifikasi_pendaftar.php">Verifikasi Pendaftaran Mahasiswa</a></li>
         <li><a href="../auth/logout.php" style="color: red;">Logout</a></li>
     </ul>
 </body>
