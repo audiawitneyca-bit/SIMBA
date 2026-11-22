@@ -30,8 +30,8 @@
             </nav>
 
             <div class="nav-actions">
-                <a href="auth/login.php" class="btn btn-ghost">Masuk</a>
-                <a href="auth/register.php" class="btn btn-orange">Daftar Sekarang</a>
+                <a href="pages/login.php" class="btn btn-ghost">Masuk</a>
+                <a href="pages/register.php" class="btn btn-orange">Daftar Sekarang</a>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                     <i class="ri-menu-3-line"></i>
                 </button>
@@ -77,7 +77,7 @@
                     Wujudkan impian akademikmu tanpa hambatan biaya. Eksplorasi puluhan program beasiswa unggulan, unggah berkas dalam satu klik, dan pantau status seleksimu secara real-time.
                 </p>
                 <div class="hero-cta">
-                    <a href="auth/register.php" class="btn btn-orange btn-lg">
+                    <a href="pages/register.php" class="btn btn-orange btn-lg">
                         Mulai Daftar <i class="ri-arrow-right-up-line"></i>
                     </a>
                     <a href="#jenis-beasiswa" class="btn btn-outline-purple btn-lg">
@@ -168,7 +168,7 @@
                         <li><i class="ri-checkbox-circle-fill"></i> Bebas UKT hingga 100%</li>
                         <li><i class="ri-checkbox-circle-fill"></i> Tunjangan buku & riset</li>
                     </ul>
-                    <a href="auth/register.php" class="btn btn-outline-purple w-100">Daftar Jalur Ini</a>
+                    <a href="pages/register.php" class="btn btn-outline-purple w-100">Daftar Jalur Ini</a>
                 </div>
 
                 <!-- Kartu 2: Beasiswa KIP / Tidak Mampu (Kartu Utama Gradient Ungu-Oranye) -->
@@ -187,7 +187,7 @@
                         <li><i class="ri-checkbox-circle-fill"></i> Biaya kuliah 100% + uang saku bulanan</li>
                         <li><i class="ri-checkbox-circle-fill"></i> Pendampingan karier eksklusif</li>
                     </ul>
-                    <a href="auth/register.php" class="btn btn-orange w-100">Daftar Jalur Ini</a>
+                    <a href="pages/register.php" class="btn btn-orange w-100">Daftar Jalur Ini</a>
                 </div>
 
                 <!-- Kartu 3: Beasiswa Inovasi & Kepemimpinan (Jenis Bebas) -->
@@ -205,7 +205,7 @@
                         <li><i class="ri-checkbox-circle-fill"></i> Subsidi UKT 75% + dana inkubasi</li>
                         <li><i class="ri-checkbox-circle-fill"></i> Mentoring bersama praktisi industri</li>
                     </ul>
-                    <a href="auth/register.php" class="btn btn-outline-purple w-100">Daftar Jalur Ini</a>
+                    <a href="pages/register.php" class="btn btn-outline-purple w-100">Daftar Jalur Ini</a>
                 </div>
             </div>
 
@@ -340,7 +340,7 @@
                     <h3>Siap Menjadi Awardee SIMBA Berikutnya?</h3>
                     <p>Buat akun sekarang dan lengkapi profil akademikmu sebelum pendaftaran ditutup.</p>
                 </div>
-                <a href="auth/register.php" class="btn btn-orange btn-lg">Buat Akun Gratis <i class="ri-arrow-right-line"></i></a>
+                <a href="pages/register.php" class="btn btn-orange btn-lg">Buat Akun Gratis <i class="ri-arrow-right-line"></i></a>
             </div>
         </div>
     </section>
@@ -377,9 +377,9 @@
             <div class="footer-links">
                 <h4>Akses Cepat</h4>
                 <ul>
-                    <li><a href="auth/login.php">Login Pendaftar</a></li>
-                    <li><a href="auth/register.php">Registrasi Akun Baru</a></li>
-                    <li><a href="auth/login.php">Portal Admin Verifikator</a></li>
+                    <li><a href="pages/login.php">Login Pendaftar</a></li>
+                    <li><a href="pages/register.php">Registrasi Akun Baru</a></li>
+                    <li><a href="pages/login.php">Portal Admin Verifikator</a></li>
                     <li><a href="#">Panduan Pendaftaran</a></li>
                 </ul>
             </div>
