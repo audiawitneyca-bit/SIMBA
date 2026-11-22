@@ -99,7 +99,7 @@ $data_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasisw
 
             <!-- Form Tambah Program Beasiswa Baru -->
             <section class="dash-section">
-                <div class="beasiswa-card" style="max-width: 780px;">
+                <div class="beasiswa-card" style="width: 100%;">
                     <div class="section-bar" style="margin-bottom: 18px;">
                         <div>
                             <h2><i class="ri-add-circle-fill"></i> Tambah Program Beasiswa Baru</h2>
