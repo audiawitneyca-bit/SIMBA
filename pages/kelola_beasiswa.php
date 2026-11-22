@@ -7,7 +7,13 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
+// Query daftar beasiswa aktif
 $data_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasiswa DESC");
+
+// Hitung pendaftar baru yang belum dilihat admin untuk badge notifikasi sidebar
+$last_seen_id   = $_SESSION['last_seen_pendaftar_id'] ?? 0;
+$q_notif        = mysqli_query($conn, "SELECT COUNT(*) AS baru FROM pendaftaran WHERE (LOWER(status) LIKE '%menunggu%' OR LOWER(status) LIKE '%proses%' OR LOWER(status) LIKE '%pending%') AND id_pendaftaran > $last_seen_id");
+$jml_notif_baru = (int)(mysqli_fetch_assoc($q_notif)['baru'] ?? 0);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -49,6 +55,9 @@ $data_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasisw
             <a href="verifikasi_pendaftar.php" class="menu-item" title="Verifikasi Pendaftar">
                 <i class="ri-user-follow-line"></i>
                 <span class="sidebar-text">Verifikasi Pendaftar</span>
+                <?php if ($jml_notif_baru > 0): ?>
+                    <span class="notif-badge"><?= $jml_notif_baru ?></span>
+                <?php endif; ?>
             </a>
 
             <span class="menu-label sidebar-text mt-section">LAINNYA</span>
@@ -73,7 +82,7 @@ $data_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasisw
                 <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="ri-menu-2-line"></i></button>
                 <div>
                     <h1>Kelola Data Beasiswa</h1>
-                    <p>Tambahkan program beasiswa baru atau kelola kuota serta batas waktu pendaftaran.</p>
+                    <p>Tambahkan program beasiswa baru, atur kuota, atau tentukan program unggulan landing page.</p>
                 </div>
             </div>
             <div class="topbar-right">
@@ -97,7 +106,7 @@ $data_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasisw
                 </div>
             <?php endif; ?>
 
-            <!-- Form Tambah Program Beasiswa Baru -->
+            <!-- Form Tambah Program Beasiswa Baru (Full Width) -->
             <section class="dash-section">
                 <div class="beasiswa-card" style="width: 100%;">
                     <div class="section-bar" style="margin-bottom: 18px;">
@@ -145,12 +154,12 @@ $data_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasisw
                 <div class="section-bar">
                     <div>
                         <h2><i class="ri-list-check-2"></i> Daftar Beasiswa Aktif</h2>
-                        <p>Seluruh program beasiswa yang saat ini tampil di halaman pendaftar.</p>
+                        <p>Seluruh program beasiswa yang saat ini tampil di halaman landing page dan pendaftar.</p>
                     </div>
                 </div>
 
                 <div class="table-card">
-                    <?php if (mysqli_num_rows($data_beasiswa) > 0): ?>
+                    <?php if ($data_beasiswa && mysqli_num_rows($data_beasiswa) > 0): ?>
                         <div class="table-responsive">
                             <table class="modern-table">
                                 <thead>

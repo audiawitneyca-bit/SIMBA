@@ -7,6 +7,11 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
+// Tandai semua pendaftar saat ini sudah dilihat oleh admin sehingga badge merah hilang
+$q_max = mysqli_query($conn, "SELECT MAX(id_pendaftaran) AS max_id FROM pendaftaran");
+$max_row = mysqli_fetch_assoc($q_max);
+$_SESSION['last_seen_pendaftar_id'] = (int)($max_row['max_id'] ?? 0);
+
 $pendaftar = mysqli_query($conn, "
     SELECT p.*, u.nama_lengkap, u.email, b.nama_beasiswa
     FROM pendaftaran p

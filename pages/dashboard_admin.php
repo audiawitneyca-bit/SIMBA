@@ -7,15 +7,20 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
-// Ambil ringkasan angka untuk panel admin
-$q_beasiswa  = mysqli_query($conn, "SELECT COUNT(*) AS total FROM beasiswa");
+// Ringkasan angka panel admin
+$q_beasiswa   = mysqli_query($conn, "SELECT COUNT(*) AS total FROM beasiswa");
 $tot_beasiswa = mysqli_fetch_assoc($q_beasiswa)['total'] ?? 0;
 
-$q_pendaftar  = mysqli_query($conn, "SELECT COUNT(*) AS total FROM pendaftaran");
+$q_pendaftar   = mysqli_query($conn, "SELECT COUNT(*) AS total FROM pendaftaran");
 $tot_pendaftar = mysqli_fetch_assoc($q_pendaftar)['total'] ?? 0;
 
-$q_pending    = mysqli_query($conn, "SELECT COUNT(*) AS total FROM pendaftaran WHERE status LIKE '%Proses%' OR status LIKE '%Menunggu%' OR status LIKE '%Pending%'");
-$tot_pending  = mysqli_fetch_assoc($q_pending)['total'] ?? 0;
+$q_pending   = mysqli_query($conn, "SELECT COUNT(*) AS total FROM pendaftaran WHERE LOWER(status) LIKE '%menunggu%' OR LOWER(status) LIKE '%proses%' OR LOWER(status) LIKE '%pending%'");
+$tot_pending = mysqli_fetch_assoc($q_pending)['total'] ?? 0;
+
+// Hitung pendaftar baru yang belum dilihat admin untuk badge notifikasi sidebar
+$last_seen_id   = $_SESSION['last_seen_pendaftar_id'] ?? 0;
+$q_notif        = mysqli_query($conn, "SELECT COUNT(*) AS baru FROM pendaftaran WHERE (LOWER(status) LIKE '%menunggu%' OR LOWER(status) LIKE '%proses%' OR LOWER(status) LIKE '%pending%') AND id_pendaftaran > $last_seen_id");
+$jml_notif_baru = (int)(mysqli_fetch_assoc($q_notif)['baru'] ?? 0);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -57,6 +62,9 @@ $tot_pending  = mysqli_fetch_assoc($q_pending)['total'] ?? 0;
             <a href="verifikasi_pendaftar.php" class="menu-item" title="Verifikasi Pendaftar">
                 <i class="ri-user-follow-line"></i>
                 <span class="sidebar-text">Verifikasi Pendaftar</span>
+                <?php if ($jml_notif_baru > 0): ?>
+                    <span class="notif-badge"><?= $jml_notif_baru ?></span>
+                <?php endif; ?>
             </a>
 
             <span class="menu-label sidebar-text mt-section">LAINNYA</span>
@@ -90,8 +98,8 @@ $tot_pending  = mysqli_fetch_assoc($q_pending)['total'] ?? 0;
         </header>
 
         <div class="dash-content">
-            <!-- Kartu Statistik Admin -->
-            <section class="summary-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <!-- Kartu Statistik Admin (3 Kolom Horizontal) -->
+            <section class="summary-grid">
                 <div class="summary-card card-purple-grad">
                     <div class="summary-icon"><i class="ri-award-fill"></i></div>
                     <div>
@@ -133,7 +141,7 @@ $tot_pending  = mysqli_fetch_assoc($q_pending)['total'] ?? 0;
                             <span class="kuota-pill">Manajemen Program</span>
                         </div>
                         <h3>Kelola Data Beasiswa</h3>
-                        <p class="b-desc">Tambah program beasiswa baru, atur kuota penerima, tentukan tenggat pendaftaran (deadline), atau hapus program yang sudah selesai.</p>
+                        <p class="b-desc">Tambah program beasiswa baru, atur kuota penerima, tentukan tenggat pendaftaran (deadline), atau pilih program unggulan landing page.</p>
                         <span class="btn btn-outline-purple w-100">Buka Kelola Beasiswa <i class="ri-arrow-right-line"></i></span>
                     </a>
 

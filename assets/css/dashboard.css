@@ -704,3 +704,40 @@
         display: none;
     }
 }
+
+/* Badge Notifikasi Merah di Sidebar Admin */
+.notif-badge {
+    margin-left: auto;
+    background: #ef4444;
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 800;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.35);
+    animation: pulseNotif 1.8s infinite;
+}
+
+.dash-body.sidebar-collapsed .notif-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    min-width: 10px;
+    height: 10px;
+    padding: 0;
+    font-size: 0;
+}
+
+.menu-item {
+    position: relative;
+}
+
+@keyframes pulseNotif {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
