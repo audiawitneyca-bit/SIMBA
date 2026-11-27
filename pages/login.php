@@ -76,8 +76,8 @@ if (isset($_SESSION['id_user'])) {
                     </div>
                 <?php endif; ?>
 
-                <!-- Tombol Google SSO (Tinggal disambungkan backend oleh Witney) -->
-                <a href="../auth/google_login.php" class="btn-google" onclick="alert('Fitur Google SSO sedang disiapkan oleh tim Backend! Silakan login menggunakan email & password terlebih dahulu.'); return false;">
+                <!-- Tombol Google SSO -->
+                <a href="../auth/google_login.php" class="btn-google">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
                     <span>Masuk dengan Google</span>
                 </a>

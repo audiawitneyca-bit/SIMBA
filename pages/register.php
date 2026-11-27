@@ -63,7 +63,7 @@ if (isset($_SESSION['id_user'])) {
                 <?php endif; ?>
 
                 <!-- Tombol Google SSO -->
-                <a href="../auth/google_login.php" class="btn-google" onclick="alert('Fitur Google SSO sedang disiapkan oleh tim Backend! Silakan daftar menggunakan form di bawah.'); return false;">
+                <a href="../auth/google_login.php" class="btn-google">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
                     <span>Daftar dengan Google</span>
                 </a>
@@ -78,7 +78,7 @@ if (isset($_SESSION['id_user'])) {
                         <label for="nama_lengkap">Nama Lengkap</label>
                         <div class="input-wrapper">
                             <i class="ri-user-3-line input-icon"></i>
-                            <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Contoh: Grace Josephine" required>
+                            <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Contoh: Martin J. Edwards" required>
                         </div>
                     </div>
 
@@ -86,7 +86,7 @@ if (isset($_SESSION['id_user'])) {
                         <label for="email">Alamat Email Aktif</label>
                         <div class="input-wrapper">
                             <i class="ri-mail-line input-icon"></i>
-                            <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                            <input type="email" id="email" name="email" placeholder="nmartined@email.com" required>
                         </div>
                     </div>
 
