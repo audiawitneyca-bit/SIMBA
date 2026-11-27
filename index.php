@@ -113,10 +113,10 @@ if ($query_beasiswa) {
                 <span class="section-subtitle">MENGENAL LEBIH DEKAT</span>
                 <h2>Apa Itu <span class="highlight-orange">SIMBA?</span></h2>
                 <p class="lead-text">
-                    <strong>SIMBA (Sistem Informasi Manajemen Beasiswa)</strong> adalah portal terpadu berbasis web yang menjembatani penyedia dana pendidikan dengan calon pendaftar berbakat di seluruh Indonesia[cite: 24].
+                    <strong>SIMBA (Sistem Informasi Manajemen Beasiswa)</strong> adalah portal terpadu berbasis web yang menjembatani penyedia dana pendidikan dengan calon pendaftar berbakat di seluruh Indonesia.
                 </p>
                 <p>
-                    Secara filosofis, nama <strong>SIMBA</strong> terinspirasi dari keberanian sang singa—merepresentasikan semangat pantang menyerah dan kekuatan tekad para pelajar dalam memperjuangkan pendidikan tinggi[cite: 24]. Sistem ini mendigitalisasi seluruh alur pengelolaan beasiswa mulai dari eksplorasi program, registrasi profil, pengunggahan dokumen syarat, hingga pengumuman akhir ke dalam satu ekosistem yang transparan dan terstruktur[cite: 24].
+                    Secara filosofis, nama <strong>SIMBA</strong> terinspirasi dari keberanian sang singa—merepresentasikan semangat pantang menyerah dan kekuatan tekad para pelajar dalam memperjuangkan pendidikan tinggi. Sistem ini mendigitalisasi seluruh alur pengelolaan beasiswa mulai dari eksplorasi program, registrasi profil, pengunggahan dokumen syarat, hingga pengumuman akhir ke dalam satu ekosistem yang transparan dan terstruktur.
                 </p>
 
                 <div class="philosophy-cards">
@@ -352,7 +352,7 @@ if ($query_beasiswa) {
                     <span>SIMBA</span>
                 </a>
                 <p>
-                    Sistem Informasi Manajemen Beasiswa — Mewujudkan akses pendidikan tinggi yang merata, transparan, dan berdaya saing bagi generasi muda Indonesia[cite: 24].
+                    Sistem Informasi Manajemen Beasiswa — Mewujudkan akses pendidikan tinggi yang merata, transparan, dan berdaya saing bagi generasi muda Indonesia.
                 </p>
                 <div class="social-links">
                     <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
