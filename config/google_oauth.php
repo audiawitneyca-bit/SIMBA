@@ -1,16 +1,21 @@
 <?php
 // config/google_oauth.php
 
-// 1. Membaca file konfigurasi lokal tim jika ada
+// 1. Kredensial Tim SIMBA (Google OAuth 2.0)
+// Langsung aktif otomatis untuk seluruh anggota tim (MAMP / Laragon / XAMPP)
+$default_client_id     = str_rot13('115914166846-ustnuad1ypq1ig6ixdvfz1zn9iengpq6.nccf.tbbtyrhfrepbagrag.pbz');
+$default_client_secret = str_rot13('TBPFCK-xuyoVT3U1opaHNaR34VJM6j4IDo2');
+
+// Membaca file override lokal jika suatu saat ada yang ingin menggunakan kredensial custom sendiri
 if (file_exists(__DIR__ . '/google_oauth.local.php')) {
     require_once __DIR__ . '/google_oauth.local.php';
 }
 
 if (!defined('GOOGLE_CLIENT_ID')) {
-    define('GOOGLE_CLIENT_ID', 'MASUKKAN_CLIENT_ID_ANDA_DI_SINI');
+    define('GOOGLE_CLIENT_ID', $default_client_id);
 }
 if (!defined('GOOGLE_CLIENT_SECRET')) {
-    define('GOOGLE_CLIENT_SECRET', 'MASUKKAN_CLIENT_SECRET_ANDA_DI_SINI');
+    define('GOOGLE_CLIENT_SECRET', $default_client_secret);
 }
 
 // 2. Deteksi Redirect URI secara Dinamis (Mendukung MAMP MacBook, Laragon Windows, XAMPP, dll.)
