@@ -38,6 +38,7 @@ while ($row = mysqli_fetch_assoc($riwayat)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Pendaftar — SIMBA</title>
+    <link rel="icon" type="image/jpeg" href="../assets/img/logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -51,7 +52,7 @@ while ($row = mysqli_fetch_assoc($riwayat)) {
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <a href="../index.php" class="brand sidebar-brand">
-                <div class="brand-icon"><i class="ri-blaze-fill"></i></div>
+                <div class="brand-icon"><img src="../assets/img/logo.jpeg" alt="Logo SIMBA"></div>
                 <span class="sidebar-text">SIMBA</span>
             </a>
             <!-- Tombol Hide / Collapse Sidebar -->

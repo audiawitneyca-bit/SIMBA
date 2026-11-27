@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require_once '../config/google_oauth.php';
 
-// Pastikan Client ID sudah diisi
+// Pastikan Client ID sudah diisi (hanya die kalau masih placeholder)
 if (empty(GOOGLE_CLIENT_ID) || GOOGLE_CLIENT_ID === 'MASUKKAN_CLIENT_ID_ANDA_DI_SINI') {
     die("Error: Google Client ID belum dikonfigurasi di config/google_oauth.php");
 }

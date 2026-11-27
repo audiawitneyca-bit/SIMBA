@@ -15,6 +15,7 @@ if ($query_beasiswa) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIMBA — Sistem Informasi Manajemen Beasiswa</title>
+    <link rel="icon" type="image/jpeg" href="assets/img/logo.jpeg">
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +30,7 @@ if ($query_beasiswa) {
     <header class="navbar" id="navbar">
         <div class="container nav-wrapper">
             <a href="index.php" class="brand">
-                <div class="brand-icon"><i class="ri-blaze-fill"></i></div>
+                <div class="brand-icon"><img src="assets/img/logo.jpeg" alt="Logo SIMBA"></div>
                 <span>SIMBA</span>
             </a>
 
@@ -348,7 +349,7 @@ if ($query_beasiswa) {
         <div class="container footer-grid">
             <div class="footer-brand">
                 <a href="index.php" class="brand footer-logo">
-                    <div class="brand-icon"><i class="ri-blaze-fill"></i></div>
+                    <div class="brand-icon"><img src="assets/img/logo.jpeg" alt="Logo SIMBA"></div>
                     <span>SIMBA</span>
                 </a>
                 <p>

@@ -16,6 +16,7 @@ if (isset($_SESSION['id_user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk — SIMBA Beasiswa</title>
+    <link rel="icon" type="image/jpeg" href="../assets/img/logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -32,7 +33,7 @@ if (isset($_SESSION['id_user'])) {
             <div class="auth-blob-2"></div>
 
             <a href="../index.php" class="auth-brand">
-                <div class="brand-icon"><i class="ri-blaze-fill"></i></div>
+                <div class="brand-icon"><img src="../assets/img/logo.jpeg" alt="Logo SIMBA"></div>
                 <span>SIMBA</span>
             </a>
 
