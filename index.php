@@ -1,6 +1,6 @@
 <?php
 require_once 'config/koneksi.php';
-$query_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasiswa ASC");
+$query_beasiswa = mysqli_query($conn, "SELECT * FROM beasiswa ORDER BY id_beasiswa ASC"); 
 $daftar_beasiswa = [];
 if ($query_beasiswa) {
     while ($row = mysqli_fetch_assoc($query_beasiswa)) {
